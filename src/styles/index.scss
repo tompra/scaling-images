@@ -35,6 +35,9 @@ body {
     .toggle--btn__icon {
         color: $darkTextTheme;
     }
+    .img {
+        border: 2px solid white;
+    }
 }
 
 .search--container {
@@ -111,7 +114,21 @@ img {
     border-radius: 20px;
     object-fit: cover;
     transition: transform 0.2s ease-in-out;
+    border: 2px solid black;
+
     &:hover {
         transform: scale(1.1);
+    }
+}
+.pagination--container {
+    grid-column: 1 / -1;
+    margin: 0.5rem;
+    button {
+        margin: 0 0.3rem;
+        padding: 0.5rem;
+    }
+    .active {
+        font-weight: 800;
+        color: plum;
     }
 }
