@@ -1,4 +1,5 @@
 import { usePaginationContext } from '../context/PaginationContext';
+import { GrFormNext, GrFormPrevious, GrPrevious } from 'react-icons/gr';
 
 const Pagination = () => {
     const { page, setPage } = usePaginationContext();
@@ -30,21 +31,34 @@ const Pagination = () => {
     };
     return (
         <section className='pagination--container'>
-            <button onClick={() => handlePages('prev')} disabled={page === 1}>
-                Prev
+            <button
+                className='pagination--btn'
+                onClick={() => handlePages('prev')}
+                disabled={page === 1}
+            >
+                <GrFormPrevious className='pagination--icon' />
             </button>
-            {[...Array(10)].map((_, index) => (
+
+            {Array.from({ length: 10 }).map((_, index) => (
                 <button
                     key={index + 1}
                     onClick={() => handlePages(index + 1)}
-                    className={page === index + 1 ? 'active' : ''}
+                    className={
+                        page === index + 1
+                            ? 'active pagination--btn'
+                            : 'pagination--btn'
+                    }
                 >
                     {index + 1}
                 </button>
             ))}
 
-            <button onClick={() => handlePages('next')} disabled={page === 10}>
-                Next
+            <button
+                className='pagination--btn'
+                onClick={() => handlePages('next')}
+                disabled={page === 10}
+            >
+                <GrFormNext className='pagination--icon' />
             </button>
         </section>
     );
