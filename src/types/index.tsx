@@ -18,3 +18,8 @@ export type SearchContextType = {
     searchTerm: string;
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 };
+
+export type PaginationContextType = {
+    page: number;
+    setPage: React.Dispatch<React.SetStateAction<number | string>>;
+};
