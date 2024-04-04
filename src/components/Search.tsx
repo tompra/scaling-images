@@ -1,13 +1,15 @@
 import { ChangeEvent, useState } from 'react';
+import { useSearchContext } from '../context/SearchContext';
 
 const Search = () => {
     const [inputValue, setInputValue] = useState<string>('');
+    const { setSearchTerm } = useSearchContext();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const userInput = e.currentTarget.search.value;
         if (!userInput) return;
-        console.log(userInput);
+        setSearchTerm(userInput);
         setInputValue('');
     };
 
