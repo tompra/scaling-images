@@ -1,10 +1,38 @@
 @import 'variables';
 @import 'mixins';
 
+*,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     @include theme($lightBackgroundTheme, $lightTextTheme);
     transition: $transitionThemeMode;
+    height: 100vh;
 }
+
+.toggle--btn__container {
+    display: flex;
+    justify-content: end;
+    padding: 0.8rem 0.5rem;
+}
+
+.toggle--btn__theme {
+    background: transparent;
+    padding: 5px 10px;
+    border: 0;
+    .toggle--btn__icon {
+        font-size: 1.5rem;
+        color: $lightTextTheme;
+        transition: $transitionThemeMode;
+    }
+}
+
 .dark-theme {
     @include theme($darkBackgroundTheme, $darkTextTheme);
+    .toggle--btn__icon {
+        color: $darkTextTheme;
+    }
 }

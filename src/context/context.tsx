@@ -12,6 +12,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const toggleDarkTheme = (): void => {
         const newTheme = !isDarkTheme;
         setIsDarkTheme(newTheme);
+
         const body = document.querySelector('body');
         body?.classList.toggle('dark-theme', newTheme);
     };
