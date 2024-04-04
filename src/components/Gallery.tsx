@@ -4,7 +4,7 @@ import { ImagesResponseData } from '../types';
 import { useSearchContext } from '../context/SearchContext';
 import { ACCESS_KEY } from '../../secrets.json';
 
-const API_URL = `https://api.unsplash.com/search/photos?client_id=${ACCESS_KEY}&query=`;
+const API_URL = `https://api.unsplash.com/search/photos?client_id=${ACCESS_KEY}&per_page=30&query=`;
 
 const Gallery = () => {
     const { searchTerm } = useSearchContext();
@@ -19,7 +19,7 @@ const Gallery = () => {
     if (isLoading) {
         return (
             <section className='images-container'>
-                <h1>Loading...</h1>
+                <h1 className='heading'>Loading...</h1>
             </section>
         );
     }
@@ -27,7 +27,7 @@ const Gallery = () => {
     if (error) {
         return (
             <section className='images-container'>
-                <h1>{`An error has occurred: ${error?.message}`}</h1>
+                <h1 className='heading'>{`An error has occurred: ${error?.message}`}</h1>
             </section>
         );
     }
@@ -35,7 +35,7 @@ const Gallery = () => {
     if (data.results.length < 1) {
         return (
             <section className='images-container'>
-                <h1>No results are found</h1>
+                <h1 className='heading'>No results are found</h1>
             </section>
         );
     }
@@ -43,9 +43,8 @@ const Gallery = () => {
     return (
         <section className='images-container'>
             {data.results.map((item: ImagesResponseData) => {
-                console.log('item', item);
                 const url = item?.urls?.regular;
-                return <img key={item.id} src={url} />;
+                return <img key={item.id} src={url} className='img' />;
             })}
         </section>
     );

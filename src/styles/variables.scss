@@ -1,10 +1,11 @@
 // Global
+$page-height: 100vh;
 $transitionThemeMode: color 0.3s ease-in-out, background-color 0.5s ease-in-out;
 
 // DarkTheme
 $darkBackgroundTheme: rgb(30 41 59);
-$darkTextTheme: rgb(243 244 246);
+$darkTextTheme: rgb(251, 252, 254);
 
 // LightTheme
-$lightBackgroundTheme: rgb(241 245 249);
+$lightBackgroundTheme: rgb(232, 232, 232);
 $lightTextTheme: rgb(3 7 18);
