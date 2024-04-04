@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { ThemeContextType, ContextProviderProps } from '../types/index';
 
 const ThemeContext = createContext<ThemeContextType>({
@@ -6,16 +6,24 @@ const ThemeContext = createContext<ThemeContextType>({
     isDarkTheme: false,
 });
 
+const initialDarkMode = (): boolean => {
+    const isDarkModePreferred = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+    ).matches;
+    return isDarkModePreferred;
+};
+
 export const ThemeProvider: React.FC<ContextProviderProps> = ({ children }) => {
-    const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+    const [isDarkTheme, setIsDarkTheme] = useState<boolean>(initialDarkMode());
 
     const toggleDarkTheme = (): void => {
         const newTheme = !isDarkTheme;
         setIsDarkTheme(newTheme);
-
-        const body = document.querySelector('body');
-        body?.classList.toggle('dark-theme', newTheme);
     };
+
+    useEffect(() => {
+        document.body.classList.toggle('dark-theme', isDarkTheme);
+    }, [isDarkTheme]);
 
     return (
         <ThemeContext.Provider value={{ toggleDarkTheme, isDarkTheme }}>
