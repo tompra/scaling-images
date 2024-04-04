@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { ImagesResponseData } from '../types';
 import { useSearchContext } from '../context/SearchContext';
-import { ACCESS_KEY } from '../../secrets.json';
-import Pagination from './Pagination';
 import { usePaginationContext } from '../context/PaginationContext';
+import { ACCESS_KEY } from '../../secrets.json';
+import axios from 'axios';
+import Pagination from './Pagination';
 
 const API_URL = `https://api.unsplash.com/search/photos?client_id=${ACCESS_KEY}&per_page=9`;
 
@@ -48,8 +48,19 @@ const Gallery = () => {
     return (
         <section className='images-container'>
             {data.results.map((item: ImagesResponseData) => {
-                const url = item?.urls?.regular;
-                return <img key={item.id} src={url} className='img' />;
+                const {
+                    id,
+                    alt_description,
+                    urls: { regular },
+                } = item;
+                return (
+                    <img
+                        key={id}
+                        src={regular}
+                        className='img'
+                        alt={alt_description}
+                    />
+                );
             })}
             {!isLoading && <Pagination />}
         </section>
