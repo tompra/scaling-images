@@ -3,20 +3,25 @@ import axios from 'axios';
 import { ImagesResponseData } from '../types';
 import { useSearchContext } from '../context/SearchContext';
 import { ACCESS_KEY } from '../../secrets.json';
+import Pagination from './Pagination';
+import { usePaginationContext } from '../context/PaginationContext';
 
-const API_URL = `https://api.unsplash.com/search/photos?client_id=${ACCESS_KEY}&per_page=30&query=`;
+const API_URL = `https://api.unsplash.com/search/photos?client_id=${ACCESS_KEY}&per_page=9`;
 
 const Gallery = () => {
     const { searchTerm } = useSearchContext();
-    const { data, error, isLoading } = useQuery({
-        queryKey: ['images', searchTerm],
+    const { page } = usePaginationContext();
+    const { data, error, isLoading, isFetching } = useQuery({
+        queryKey: ['images', searchTerm, page],
         queryFn: async () => {
-            const result = await axios.get(`${API_URL}${searchTerm}`);
+            const result = await axios.get(
+                `${API_URL}&query=${searchTerm}&page=${page}`
+            );
             return result.data;
         },
     });
 
-    if (isLoading) {
+    if (isLoading || isFetching) {
         return (
             <section className='images-container'>
                 <h1 className='heading'>Loading...</h1>
@@ -32,7 +37,7 @@ const Gallery = () => {
         );
     }
 
-    if (data.results.length < 1) {
+    if (data.results.length === 0) {
         return (
             <section className='images-container'>
                 <h1 className='heading'>No results are found</h1>
@@ -46,6 +51,7 @@ const Gallery = () => {
                 const url = item?.urls?.regular;
                 return <img key={item.id} src={url} className='img' />;
             })}
+            {!isLoading && <Pagination />}
         </section>
     );
 };
