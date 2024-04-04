@@ -12,6 +12,7 @@ export type ContextProviderProps = {
 export type ImagesResponseData = {
     urls: { regular: string };
     id: string | null | undefined;
+    alt_description: string;
 };
 
 export type SearchContextType = {
