@@ -1,7 +1,8 @@
+import React from 'react';
 import { usePaginationContext } from '../context/PaginationContext';
-import { GrFormNext, GrFormPrevious, GrPrevious } from 'react-icons/gr';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
-const Pagination = () => {
+const Pagination: React.FC = (): JSX.Element => {
     const { page, setPage } = usePaginationContext();
 
     const handlePages = (pageNumber: number | string) => {

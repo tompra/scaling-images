@@ -1,7 +1,7 @@
 import { useThemeContext } from '../context/ThemeContext';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
 
-const ThemeToggle = () => {
+const ThemeToggle: React.FC = (): JSX.Element => {
     const { isDarkTheme, toggleDarkTheme } = useThemeContext();
     return (
         <section className='toggle--btn__container'>

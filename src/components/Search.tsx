@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useSearchContext } from '../context/SearchContext';
 
-const Search = () => {
+const Search: React.FC = (): JSX.Element => {
     const [inputValue, setInputValue] = useState<string>('');
     const { setSearchTerm } = useSearchContext();
 
