@@ -10,7 +10,13 @@ const initialDarkMode = (): boolean => {
     const isDarkModePreferred = window.matchMedia(
         '(prefers-color-scheme: dark)'
     ).matches;
-    return isDarkModePreferred;
+    const storedLocalStorage = localStorage.getItem('darkTheme');
+
+    if (storedLocalStorage === null) {
+        return isDarkModePreferred;
+    }
+
+    return storedLocalStorage === 'true';
 };
 
 export const ThemeProvider: React.FC<ContextProviderProps> = ({ children }) => {
@@ -19,6 +25,7 @@ export const ThemeProvider: React.FC<ContextProviderProps> = ({ children }) => {
     const toggleDarkTheme = (): void => {
         const newTheme = !isDarkTheme;
         setIsDarkTheme(newTheme);
+        localStorage.setItem('darkTheme', JSON.stringify(newTheme));
     };
 
     useEffect(() => {
