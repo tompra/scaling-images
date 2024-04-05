@@ -1,30 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
+import useFetchData from '../hook/useFetchData';
 import { ImagesResponseData } from '../types';
-import { useSearchContext } from '../context/SearchContext';
-import { usePaginationContext } from '../context/PaginationContext';
-import { ACCESS_KEY } from '../../secrets.json';
-import axios from 'axios';
-import Pagination from './Pagination';
+import Image from './Image';
 
-const API_URL = `https://api.unsplash.com/search/photos?client_id=${ACCESS_KEY}&per_page=9`;
-
-const Gallery = () => {
-    const { searchTerm } = useSearchContext();
-    const { page } = usePaginationContext();
-    const { data, error, isLoading, isFetching } = useQuery({
-        queryKey: ['images', searchTerm, page],
-        queryFn: async () => {
-            const result = await axios.get(
-                `${API_URL}&query=${searchTerm}&page=${page}`
-            );
-            return result.data;
-        },
-    });
+const Gallery: React.FC = (): JSX.Element => {
+    const { isFetching, isLoading, error, data } = useFetchData();
 
     if (isLoading || isFetching) {
         return (
             <section className='images-container'>
-                <h1 className='heading'>Loading...</h1>
+                <h1 className='heading loading'>Loading...</h1>
             </section>
         );
     }
@@ -32,7 +16,7 @@ const Gallery = () => {
     if (error) {
         return (
             <section className='images-container'>
-                <h1 className='heading'>{`An error has occurred: ${error?.message}`}</h1>
+                <h1 className='heading error'>{`An error has occurred: ${error?.message}`}</h1>
             </section>
         );
     }
@@ -46,23 +30,15 @@ const Gallery = () => {
     }
 
     return (
-        <section className='images-container'>
+        <section className='images--container'>
             {data.results.map((item: ImagesResponseData) => {
                 const {
                     id,
                     alt_description,
                     urls: { regular },
                 } = item;
-                return (
-                    <img
-                        key={id}
-                        src={regular}
-                        className='img'
-                        alt={alt_description}
-                    />
-                );
+                return <Image key={id} alt={alt_description} src={regular} />;
             })}
-            {!isLoading && <Pagination />}
         </section>
     );
 };
