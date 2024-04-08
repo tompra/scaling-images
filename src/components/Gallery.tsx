@@ -35,9 +35,23 @@ const Gallery: React.FC = (): JSX.Element => {
                 const {
                     id,
                     alt_description,
+                    likes,
+                    liked_by_user,
+                    links: { download },
                     urls: { regular },
+                    description,
                 } = item;
-                return <Image key={id} alt={alt_description} src={regular} />;
+                return (
+                    <Image
+                        key={id}
+                        alt={alt_description}
+                        src={regular}
+                        likes={likes}
+                        liked_by_user={liked_by_user}
+                        links={download}
+                        description={description}
+                    />
+                );
             })}
         </section>
     );
