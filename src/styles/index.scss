@@ -95,33 +95,43 @@ body {
     }
 }
 
-.images-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    place-items: center;
-
-    .heading {
-        grid-column: 1 / -1;
-        padding: 1rem 0;
-        font-size: 1.5rem;
-        letter-spacing: 0.3rem;
-    }
+.images--container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-img {
-    height: 90%;
-    width: 90%;
-    border-radius: 20px;
+.heading {
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+.error {
+    color: red;
+}
+.loading {
+    color: blueviolet;
+}
+.image--container {
+    width: 20rem;
+    height: 20rem;
+    margin: 1rem;
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
     object-fit: cover;
     transition: transform 0.2s ease-in-out;
     border: 2px solid black;
-
-    &:hover {
-        transform: scale(1.1);
-    }
 }
+
 .pagination--container {
-    grid-column: 1 / -1;
-    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
     .pagination--btn {
         margin: 0 0.3rem;
         padding: 0.5rem;
@@ -157,5 +167,103 @@ img {
     .active {
         font-weight: 800;
         color: rgb(197, 85, 242);
+    }
+}
+.hover--container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart--btn__container {
+    fill: transparent;
+    stroke: red;
+    stroke-width: 20;
+    cursor: pointer;
+    position: relative;
+
+    svg {
+        overflow: visible;
+        width: 5rem;
+    }
+
+    path {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 1560;
+    }
+
+    .heart--btn__clicked {
+        animation: fade-animation 2s ease-in-out forwards;
+    }
+
+    .heart--btn__main:hover path {
+        animation: stroke-animation 2s ease-in-out forwards;
+    }
+}
+
+@keyframes stroke-animation {
+    0% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+    30% {
+        stroke-dashoffset: 780;
+        fill: rgb(255, 99, 99);
+        stroke: rgb(255, 99, 99);
+    }
+
+    45% {
+        stroke-dashoffset: 1170;
+        fill: rgb(255, 80, 80);
+        stroke: rgb(255, 80, 80);
+    }
+
+    60% {
+        stroke-dashoffset: 1560;
+        stroke: rgb(255, 55, 55);
+        fill: rgb(255, 55, 55);
+    }
+
+    90% {
+        stroke-dashoffset: 3120;
+        fill: rgb(255, 31, 31);
+        stroke: rgb(255, 31, 31);
+    }
+    100% {
+        stroke-dashoffset: 3120;
+        fill: rgb(255, 0, 0);
+        stroke: rgb(255, 0, 0);
+    }
+}
+
+@keyframes fade-animation {
+    0% {
+        fill: transparent;
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        fill: rgb(255, 0, 0);
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    75% {
+        fill: rgb(255, 0, 0);
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+
+    100% {
+        fill: rgb(255, 0, 0);
+        transform: scale(1);
+        opacity: 1;
     }
 }
