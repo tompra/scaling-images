@@ -1,9 +1,11 @@
 import useFetchData from '../hook/useFetchData';
 import { ImagesResponseData } from '../types';
 import Image from './Image';
+import useHandleFavorites from '../hook/useHandleFavorites';
 
 const Gallery: React.FC = (): JSX.Element => {
     const { isFetching, isLoading, error, data } = useFetchData();
+    const { handleFavoriteClick } = useHandleFavorites(data);
 
     if (isLoading || isFetching) {
         return (
@@ -44,12 +46,14 @@ const Gallery: React.FC = (): JSX.Element => {
                 return (
                     <Image
                         key={id}
+                        id={id}
                         alt={alt_description}
                         src={regular}
                         likes={likes}
                         liked_by_user={liked_by_user}
                         links={download}
                         description={description}
+                        handleFavoriteClick={handleFavoriteClick}
                     />
                 );
             })}
