@@ -11,7 +11,7 @@ export type ContextProviderProps = {
 
 export type ImagesResponseData = {
     urls: { regular: string };
-    id: string | null | undefined;
+    id: string;
     alt_description: string;
     likes: number;
     liked_by_user: boolean;
@@ -37,11 +37,19 @@ export type ImageProps = {
     liked_by_user: boolean;
     links: string;
     description: string;
+    handleFavoriteClick: (id: string) => void;
 };
 
 export type HoverProps = {
     likes: number;
-    liked_by_user: boolean;
+    likedByUser: boolean;
     links: string;
     description: string;
+    handleLikeClick: () => void;
+};
+
+export type ImageFavorite = {
+    id: string;
+    likes: number;
+    liked_by_user: boolean;
 };
