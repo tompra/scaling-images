@@ -1,7 +1,7 @@
 import useLocalStorage from '../hook/useLocalStorage';
-import { FetchDataResponse, ImageFavorite } from '../types';
+import { ImageFavorite, ImagesResponseData } from '../types';
 
-const useHandleFavorites = (data: { results: FetchDataResponse }) => {
+const useHandleFavorites = (data: { results: ImagesResponseData }) => {
     const { listFavorite, setListFavorite, setLocalStorage } =
         useLocalStorage();
 
