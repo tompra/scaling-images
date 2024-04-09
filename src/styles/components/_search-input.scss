@@ -5,6 +5,9 @@
     width: 30rem;
     display: flex;
     justify-content: center;
+    @include for-phone-only {
+        width: 22rem;
+    }
 
     .form--input__search {
         padding: 0.5rem;
