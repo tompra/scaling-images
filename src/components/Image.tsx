@@ -1,17 +1,33 @@
 import { ImageProps } from '../types';
 import { useState } from 'react';
 import Hover from './Hover';
+import { useEffect } from 'react';
+import useLocalStorage from '../hook/useLocalStorage';
 
 const Image: React.FC<ImageProps> = ({
     id,
     src,
     alt,
-    likes,
-    liked_by_user,
+    likes: initialLikes,
+    liked_by_user: initialLikedByUser,
     links,
     description,
+    handleFavoriteClick,
 }): JSX.Element => {
+    const { defaultListFavorite } = useLocalStorage();
     const [isHover, setIsHover] = useState<boolean>(false);
+    const [likes, setLikes] = useState<number>(initialLikes);
+    const [likedByUser, setLikedByUser] = useState<boolean>(initialLikedByUser);
+
+    useEffect(() => {
+        const storedImage = defaultListFavorite.find(
+            (image: { id: string }) => image.id === id
+        );
+        if (storedImage) {
+            setLikes(storedImage.likes);
+            setLikedByUser(storedImage.liked_by_user);
+        }
+    }, [id, defaultListFavorite]);
 
     const handleMouseIn = (): void => {
         setIsHover(true);
@@ -20,6 +36,13 @@ const Image: React.FC<ImageProps> = ({
     const handleMouseOut = (): void => {
         setIsHover(false);
     };
+
+    const handleLikeClick = (): void => {
+        setLikedByUser(!likedByUser);
+        setLikes((prevLikes) => (likedByUser ? prevLikes - 1 : prevLikes + 1));
+        handleFavoriteClick(id);
+    };
+
     return (
         <div
             key={id}
@@ -31,9 +54,10 @@ const Image: React.FC<ImageProps> = ({
             {isHover && (
                 <Hover
                     likes={likes}
-                    liked_by_user={liked_by_user}
+                    likedByUser={likedByUser}
                     links={links}
                     description={description}
+                    handleLikeClick={handleLikeClick}
                 />
             )}
         </div>
