@@ -1,0 +1,12 @@
+@import '../abstracts/variables';
+
+.toggle--btn__theme {
+    background: transparent;
+    padding: 5px 10px;
+    border: 0;
+    .toggle--btn__icon {
+        font-size: 1.5rem;
+        color: $lightTextTheme;
+        transition: $transitionThemeMode;
+    }
+}

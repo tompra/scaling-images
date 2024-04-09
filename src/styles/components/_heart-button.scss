@@ -1,0 +1,27 @@
+@import '../abstracts/animation';
+
+.heart--btn__container {
+    fill: transparent;
+    stroke: red;
+    stroke-width: 20;
+    cursor: pointer;
+    position: relative;
+
+    svg {
+        overflow: visible;
+        width: 5rem;
+    }
+
+    path {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 1560;
+    }
+
+    .heart--btn__clicked {
+        animation: fade-animation 2s ease-in-out forwards;
+    }
+
+    .heart--btn__main:hover path {
+        animation: stroke-animation 2s ease-in-out forwards;
+    }
+}

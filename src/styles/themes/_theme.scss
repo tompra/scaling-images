@@ -1,0 +1,12 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.dark-theme {
+    @include theme($darkBackgroundTheme, $darkTextTheme);
+    .toggle--btn__icon {
+        color: $darkTextTheme !important;
+    }
+    .img {
+        border: 2px solid white;
+    }
+}

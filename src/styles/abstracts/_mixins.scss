@@ -1,0 +1,30 @@
+@use 'variables';
+
+@mixin for-phone-only {
+    @media (max-width: $phone-viewport) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait {
+    @media (min-width: $tablet-portrait-viewport) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape {
+    @media (min-width: $tablet-landscape-viewport) {
+        @content;
+    }
+}
+
+@mixin for-desktop {
+    @media (max-width: $desktop-viewport) {
+        @content;
+    }
+}
+
+@mixin theme($background, $text) {
+    background-color: $background;
+    color: $text;
+}

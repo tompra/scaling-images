@@ -1,0 +1,14 @@
+@import '../abstracts/variables';
+
+.heading {
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+.error {
+    color: $error;
+}
+.loading {
+    color: $secondary-color;
+}
