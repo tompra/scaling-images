@@ -22,12 +22,10 @@ const Hover: React.FC<HoverProps> = ({
                 <p>{likes}</p>
                 <p>{`${likedByUser ? 'Liked' : 'Not Liked'}`}</p>
             </div>
-            <div>
-                <p>
-                    {!description && 'No description'}
-                    {description}
-                </p>
-            </div>
+            <p className='hover--description'>
+                {!description && 'No description'}
+                {description}
+            </p>
 
             <button className='hover--btn__link'>
                 <a href={links} target='_blank' rel='noopener noreferrer'>
