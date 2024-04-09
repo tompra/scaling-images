@@ -9,7 +9,7 @@ const SearchContext = createContext<SearchContextType>({
 export const SearchProvider: React.FC<ContextProviderProps> = ({
     children,
 }) => {
-    const [searchTerm, setSearchTerm] = useState('coffee');
+    const [searchTerm, setSearchTerm] = useState('climbing');
     return (
         <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
             {children}
