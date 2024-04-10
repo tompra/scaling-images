@@ -13,4 +13,9 @@ body {
     transition: $transitionThemeMode;
     min-height: $page-height;
     height: $page-height;
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
