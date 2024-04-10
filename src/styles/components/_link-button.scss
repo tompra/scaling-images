@@ -24,5 +24,8 @@
     a {
         text-decoration: none;
         color: #fff;
+        @include for-phone-only {
+            font-size: 10px;
+        }
     }
 }
