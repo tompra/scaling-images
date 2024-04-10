@@ -4,7 +4,7 @@ import { usePaginationContext } from '../context/PaginationContext';
 import axios from 'axios';
 
 const API_KEY = import.meta.env.VITE_ACCESS_KEY;
-const API_URL = `https://api.unsplash.com/search/photos?client_id=${API_KEY}&per_page=9`;
+const API_URL = `https://api.unsplash.com/search/photos?client_id=${API_KEY}&per_page=10`;
 
 const useFetchData = () => {
     const { searchTerm } = useSearchContext();
