@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     @include for-phone-only {
-        width: 22rem;
+        width: 20rem;
     }
 
     .form--input__search {
